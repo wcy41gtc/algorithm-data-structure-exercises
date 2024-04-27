@@ -1,0 +1,14 @@
+# TASK 0
+# The time complexity of this code is O(1) because the code is only accessing the first and last elements of the texts and calls lists.
+
+# TASK 1
+# The time complexity of this code is O(2n) because the code is iterating through all the elements in the texts and calls lists.
+
+# TASK 2
+# The time complexity of this code is O(n+m) because the code is iterating through all the elements in the calls list, then iterating m elements in phone_time dictionary.
+
+# TASK 3
+# The time complexity of this code is O(2n+nlog(n)) because the code iterates calls list twice and sorts the codes list.
+
+# TASK 4
+# The time complexity of this code is O(2n+m) because the code iterates through all elements in calls twice and all elements in texts once.
