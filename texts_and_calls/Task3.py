@@ -19,10 +19,10 @@ def get_codes(calls):
             if call[1].startswith('(080)'):
                 codes.add('080')
             elif call[1].startswith('(0'):
-                codes.add(call[1].split(')')[0])
+                codes.add(call[1].split(')')[0][1:])
             elif call[1].startswith('140'):
                 codes.add('140')
-            elif codes[1].startswith('7') or call[1].startswith('8') or call[1].startswith('9'):
+            elif call[1].startswith('7') or call[1].startswith('8') or call[1].startswith('9'):
                 codes.add(call[1][0:4])
     return codes
 
