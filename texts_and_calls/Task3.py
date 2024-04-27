@@ -18,12 +18,12 @@ def get_codes(calls):
         if call[0].startswith('(080)'):
             if call[1].startswith('(080)'):
                 codes.add('080')
-            elif call[1].startswith('('):
-                codes.add(call[1].split(')')[0][1:])
+            elif call[1].startswith('(0'):
+                codes.add(call[1].split(')')[0])
             elif call[1].startswith('140'):
                 codes.add('140')
-            else:
-                codes.add(call[1].split()[0])
+            elif codes[1].startswith('7') or call[1].startswith('8') or call[1].startswith('9'):
+                codes.add(call[1][0:4])
     return codes
 
 def percentage_of_calls(calls):
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     percentage = percentage_of_calls(calls)
     print("{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage))
 # TASK 3
-# The time complexity of this code is O(n) because the code is iterating through all the elements in the calls list.
+# The time complexity of this code is O(2n+nlog(n)) because the code iterates calls list twice and sorts the codes list.
 """
 TASK 3:
 (080) is the area code for fixed line telephones in Bangalore.

@@ -29,7 +29,7 @@ if __name__ == '__main__':
     for telemarketer in telemarketers:
         print(telemarketer)
 # TASK 4
-# The time complexity of this code is O(n) because the code is iterating through all the elements in the texts and calls lists.
+# The time complexity of this code is O(nlog(n)) because the code iterates through all elements in calls twice and all elements in texts once.
 
 """
 TASK 4:
