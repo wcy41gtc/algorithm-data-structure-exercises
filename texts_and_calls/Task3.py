@@ -12,6 +12,39 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+def get_codes(calls):
+    codes = set()
+    for call in calls:
+        if call[0].startswith('(080)'):
+            if call[1].startswith('(080)'):
+                codes.add('080')
+            elif call[1].startswith('('):
+                codes.add(call[1].split(')')[0][1:])
+            elif call[1].startswith('140'):
+                codes.add('140')
+            else:
+                codes.add(call[1].split()[0])
+    return codes
+
+def percentage_of_calls(calls):
+    count = 0
+    total = 0
+    for call in calls:
+        if call[0].startswith('(080)'):
+            total += 1
+            if call[1].startswith('(080)'):
+                count += 1
+    return count / total * 100
+
+if __name__ == '__main__':
+    codes = get_codes(calls)
+    print("The numbers called by people in Bangalore have codes:")
+    for code in sorted(codes):
+        print(code)
+    percentage = percentage_of_calls(calls)
+    print("{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage))
+# TASK 3
+# The time complexity of this code is O(n) because the code is iterating through all the elements in the calls list.
 """
 TASK 3:
 (080) is the area code for fixed line telephones in Bangalore.

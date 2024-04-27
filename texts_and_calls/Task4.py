@@ -12,6 +12,25 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+def telemarketers(texts, calls):
+    telemarketers = set()
+    for call in calls:
+        telemarketers.add(call[0])
+    for call in calls:
+        telemarketers.discard(call[1])
+    for text in texts:
+        telemarketers.discard(text[0])
+        telemarketers.discard(text[1])
+    return sorted(telemarketers)
+
+if __name__ == '__main__':
+    telemarketers = telemarketers(texts, calls)
+    print("These numbers could be telemarketers: ")
+    for telemarketer in telemarketers:
+        print(telemarketer)
+# TASK 4
+# The time complexity of this code is O(n) because the code is iterating through all the elements in the texts and calls lists.
+
 """
 TASK 4:
 The telephone company want to identify numbers that might be doing

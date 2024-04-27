@@ -11,7 +11,11 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-
+if __name__ == '__main__':
+    print("First record of texts, {} texts {} at time {}".format(texts[0][0], texts[0][1], texts[0][2]))
+    print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(calls[-1][0], calls[-1][1], calls[-1][2], calls[-1][3]))
+# TASK 0
+# The time complexity of this code is O(1) because the code is only accessing the first and last elements of the texts and calls lists.
 """
 TASK 0:
 What is the first record of texts and what is the last record of calls?
