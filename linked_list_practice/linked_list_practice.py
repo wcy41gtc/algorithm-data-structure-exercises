@@ -105,3 +105,27 @@ class LinkedList:
             size += 1
             node = node.next
         return size
+    # Task 8. Write definition of 'reverse()' function and test its functionality
+    def reverse(self):
+        """ Reverse the linked list. """
+        prev = None
+        node = self.head
+        while node:
+            next_node = node.next
+            node.next = prev
+            prev = node
+            node = next_node
+        self.head = prev
+    # Task 9. Write definition of `is_circular()` function and test its functionality
+    def is_circular(self):
+        """ Check if the linked list is circular. """
+        if self.head is None:
+            return False
+        slow = self.head
+        fast = self.head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
