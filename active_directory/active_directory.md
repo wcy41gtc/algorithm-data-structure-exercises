@@ -1,0 +1,7 @@
+### Reasoning Behind Decisions
+
+The code defines a `Group` class, which uses lists to store both users and subgroups. This decision leverages the simplicity and direct access capabilities of lists for storing user and group objects. Lists are dynamic arrays, allowing efficient appending of elements with an average time complexity of O(1). The `is_user_in_group` function recursively searches for a user within a group and its subgroups. This approach ensures that all nested groups are checked, making the solution comprehensive. The choice to use recursion simplifies the logic for traversing nested structures, ensuring that the function can easily handle any depth of nested groups without requiring additional data structures like stacks or queues.
+
+### Time Efficiency and Space Efficiency
+
+In terms of time efficiency, the solution has a worst-case time complexity of O(n), where n is the total number of users and groups in the entire hierarchy. This is because, in the worst case, the function might need to check every user in every group. Space efficiency is primarily dictated by the recursion depth, which is O(d), where d is the depth of the nested group structure. Each recursive call adds a frame to the call stack, and in the worst case, the depth could be equal to the number of groups if each group contains only one subgroup. The space complexity for storing users and groups is O(n) due to the use of lists, where n is the total number of users and groups.
