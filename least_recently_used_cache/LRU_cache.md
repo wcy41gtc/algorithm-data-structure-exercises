@@ -1,0 +1,7 @@
+### Reasoning Behind Code Decisions
+
+In the implementation of the LRU Cache, I used a combination of a doubly linked list and a hash map. The doubly linked list allows efficient O(1) insertion and deletion of nodes, which is crucial for maintaining the order of recently used items and quickly evicting the least recently used item when necessary. The hash map (dictionary in Python) provides O(1) time complexity for lookups, allowing for fast access to cache entries. By using these two data structures together, we can ensure that both the `get` and `set` operations meet the requirement of O(1) time complexity. The doubly linked list keeps track of the order of usage, while the hash map ensures quick access and updates to the cache entries.
+
+### Time and Space Efficiency
+
+The time efficiency of this solution is O(1) for both `get` and `set` operations. This is achieved by leveraging the hash map for constant time lookups and the doubly linked list for constant time updates to the order of nodes. This combination ensures that accessing, inserting, and removing cache entries are all efficient, meeting the problem's requirements. In terms of space efficiency, the solution uses O(n) space, where n is the capacity of the cache. This is because we need to store up to n nodes in the doubly linked list and up to n key-node pairs in the hash map. While this space complexity is linear, it is necessary to maintain the order of elements and provide fast access, insertion, and deletion operations.
