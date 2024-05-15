@@ -42,6 +42,8 @@ Each exercise is contained within its respective folder, along with a README fil
 
 ## Folder Structure
 The repository is organized as follows:
+
+```
 algorithms-data-structures-exercises/
 │
 ├── array/
@@ -85,6 +87,8 @@ algorithms-data-structures-exercises/
 │   └── ...
 │
 └── README.md
+```
+
 Each folder contains exercises related to a specific data structure or algorithm. Inside each exercise folder, you will find:
 
 - `README.md`: Detailed problem statement and instructions.
