@@ -1,2 +1,4 @@
 .DS_store
 __pychache__
+*.zip
+*.tar.gz
