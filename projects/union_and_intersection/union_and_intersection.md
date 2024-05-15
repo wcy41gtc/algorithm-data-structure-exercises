@@ -1,0 +1,7 @@
+### Reasoning Behind Decisions
+
+The code leverages the `LinkedList` and `Node` classes to represent the input linked lists and to store the results of the union and intersection operations. For both functions, union and intersection, two lists (`list1` and `list2`) are created to store the unique values of the elements from the linked lists. These lists are then sorted and de-duplicated using Python's set data structure, which ensures all elements are unique and allows for efficient comparisons. The decision to use lists and sets was made to simplify the merging and comparison process, making it easy to identify and combine the elements for union and intersection operations. This approach ensures that the resultant linked list contains only the necessary elements in a sorted order.
+
+### Time and Space Efficiency
+
+For the union function, the time complexity is O(n log n) due to the sorting of the lists, where n is the total number of elements in both linked lists. Creating the lists from the linked lists has a linear time complexity of O(n). The space complexity is O(n) as additional space is required to store the elements in the lists before appending them to the result linked list. Similarly, the intersection function also has a time complexity of O(n log n) because of the sorting operation. The space complexity remains O(n) for the same reasons as in the union function, where we store the elements in temporary lists. The use of sets for deduplication is efficient, making the overall approach both time and space optimal for the given problem.
