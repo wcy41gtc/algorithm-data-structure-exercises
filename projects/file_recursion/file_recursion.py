@@ -16,24 +16,28 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
-    # Check if the path is a file
-    if os.path.isfile(path):
-        # Check if the file has the suffix
-        if path.endswith(suffix):
-            return [path]
+    # Check if the path exists
+    if not os.path.exists(path):
+        return []
+    else:
+        # Check if the path is a file
+        if os.path.isfile(path):
+            # Check if the file has the suffix
+            if path.endswith(suffix):
+                return [path]
+            else:
+                return []
+        # Check if the path is a directory
+        elif os.path.isdir(path):
+            # Initialize the list of paths
+            paths = []
+            # Iterate over the files and directories in the path
+            for file in os.listdir(path):
+                # Recursively call the function on the file
+                paths += find_files(suffix, os.path.join(path, file))
+            return paths
         else:
             return []
-    # Check if the path is a directory
-    elif os.path.isdir(path):
-        # Initialize the list of paths
-        paths = []
-        # Iterate over the files and directories in the path
-        for file in os.listdir(path):
-            # Recursively call the function on the file
-            paths += find_files(suffix, os.path.join(path, file))
-        return paths
-    else:
-        return []
 
 # Test cases
 def test_function(test_case):
@@ -62,6 +66,41 @@ def test():
     path = "./testdir"
     suffix = ".z"
     output = []
+    test_case = [suffix, path, output]
+    test_function(test_case)
+
+    # Test case 4 (Edge Case) - Empty directory
+    path = "./emptydir"
+    suffix = ".c"
+    output = []
+    test_case = [suffix, path, output]
+    test_function(test_case)
+
+    # Test case 5 (Edge Case) - Non existent directory
+    path = "./nonexistentdir"
+    suffix = ".c"
+    output = []
+    test_case = [suffix, path, output]
+    test_function(test_case)
+
+    # Test case 6 (Edge Case) - Invalid suffix
+    path = "./testdir"
+    suffix = ".exe"
+    output = []
+    test_case = [suffix, path, output]
+    test_function(test_case)
+
+    # Test case 7 (Edge Case) - single file in root directory
+    path = "./singlefile"
+    suffix = ".txt"
+    output = ['./singlefile/singlefile.txt']
+    test_case = [suffix, path, output]
+    test_function(test_case)
+
+    # Test case 8 (deeply nested directories)
+    path = "./deepdir"
+    suffix = ".c"
+    output = ['./deepdir/subdir1/subdir2/subdir3/subdir4/subdir5/a.c']
     test_case = [suffix, path, output]
     test_function(test_case)
 
