@@ -11,8 +11,9 @@ class Block:
         self.hash = self.calc_hash()
     
     def calc_hash(self):
+        data_to_hash = f"{self.index}{self.previous_hash}{self.timestamp}{self.data}"
         sha = hashlib.sha256()
-        sha.update((str(self.index) + str(self.previous_hash) + str(self.timestamp) + str(self.data)).encode('utf-8'))
+        sha.update(data_to_hash.encode('utf-8'))
         return sha.hexdigest()
 
 class BlockChain:
