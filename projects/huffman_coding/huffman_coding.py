@@ -38,7 +38,6 @@ def build_huffman_tree(data):
         merged.left = node1
         merged.right = node2
         heapq.heappush(heap, merged)
-
     return heap[0]
 
 def build_huffman_codes(tree, prefix="", codebook=None):
@@ -61,6 +60,10 @@ def build_huffman_codes(tree, prefix="", codebook=None):
     return codebook
 
 def huffman_encoding(data):
+    if not isinstance(data, str):
+        raise ValueError("Input must be a string")
+    if not data:
+        return "", None
     tree = build_huffman_tree(data)
     codebook = build_huffman_codes(tree)
     encoded_data = ''.join(codebook[char] for char in data)
@@ -69,6 +72,12 @@ def huffman_encoding(data):
 def huffman_decoding(data, tree):
     if tree is None:
         return ""
+    elif not isinstance(tree, HuffmanNode):
+        raise ValueError("Tree must be a Huffman tree")
+    # Check if data contains only '0' and '1'
+    if not all(bit in '01' for bit in data):
+        raise ValueError("Data must contain only '0' and '1'")
+    # Check if tree is a Huffman tree
 
     decoded_data = []
     current_node = tree
@@ -107,6 +116,37 @@ def test_huffman_coding():
     decoded_data3 = huffman_decoding(encoded_data3, tree3)
     assert decoded_data3 == data3, "Test Case 3 Failed"
     print("Test Case 3 Passed")
+
+    # Test Case 4: Invalid Input
+    try:
+        huffman_encoding(123)
+    except ValueError:
+        print("Test Case 4 Passed")
+    else:
+        print("Test Case 4 Failed")
+    
+    # Test Case 5: Empty Input
+    data5 = ""
+    encoded_data5, tree5 = huffman_encoding(data5)
+    decoded_data5 = huffman_decoding(encoded_data5, tree5)
+    assert decoded_data5 == data5, "Test Case 5 Failed"
+    print("Test Case 5 Passed")
+    
+    # Test Case 6: Invalid Decoding Data
+    try:
+        huffman_decoding("012101", None)
+    except ValueError:
+        print("Test Case 6 Passed")
+    else:
+        print("Test Case 6 Failed")
+
+    # Test Case 7: Invalid Decoding Tree
+    try:
+        huffman_decoding("010101", 123)
+    except ValueError:
+        print("Test Case 7 Passed")
+    else:
+        print("Test Case 7 Failed")
 
 if __name__ == "__main__":
     test_huffman_coding()
