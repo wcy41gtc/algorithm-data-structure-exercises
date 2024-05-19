@@ -52,64 +52,45 @@ class LinkedList:
 
         return size
 
-def union(llist_1, llist_2):
-    output = LinkedList()
-    list1 = []
-    list2 = []
-    head1 = llist_1.head
-    head2 = llist_2.head
-    while head1 is not None:
-        list1.append(head1.value)
-        head1 = head1.next
-    while head2 is not None:
-        list2.append(head2.value)
-        head2 = head2.next
-    list1 = sorted(list(set(list1)))
-    list2 = sorted(list(set(list2)))
+def union(llist1, llist2):
+    union_set = set()
+    current = llist1.head
+    while current:
+        union_set.add(current.value)
+        current = current.next
     
-    while True:
-        if len(list1) == 0 and len(list2) == 0:
-            break
-        elif len(list1) == 0:
-            output.append(list2.pop(0))
-        elif len(list2) == 0:
-            output.append(list1.pop(0))
-        elif list1[0] < list2[0]:
-            output.append(list1.pop(0))
-        elif list1[0] > list2[0]:
-            output.append(list2.pop(0))
-        else:
-            output.append(list1.pop(0))
-            list2.pop(0)
-    return output
+    current = llist2.head
+    while current:
+        union_set.add(current.value)
+        current = current.next
+    
+    sorted_union_set = sorted(union_set)
+    union_llist = LinkedList()
+    for value in sorted_union_set:
+        union_llist.append(value)
+    
+    return union_llist
 
-
-def intersection(llist_1, llist_2):
-    output = LinkedList()
-    list1 = []
-    list2 = []
-    head1 = llist_1.head
-    head2 = llist_2.head
-    while head1 is not None:
-        list1.append(head1.value)
-        head1 = head1.next
-    while head2 is not None:
-        list2.append(head2.value)
-        head2 = head2.next
-    list1 = sorted(list(set(list1)))
-    list2 = sorted(list(set(list2)))
-
-    while True:
-        if len(list1) == 0 or len(list2) == 0:
-            break
-        elif list1[0] < list2[0]:
-            list1.pop(0)
-        elif list1[0] > list2[0]:
-            list2.pop(0)
-        else:
-            output.append(list1.pop(0))
-            list2.pop(0)
-    return output
+def intersection(llist1, llist2):
+    set1 = set()
+    current = llist1.head
+    while current:
+        set1.add(current.value)
+        current = current.next
+    
+    intersection_set = set()
+    current = llist2.head
+    while current:
+        if current.value in set1:
+            intersection_set.add(current.value)
+        current = current.next
+    
+    sorted_intersection_set = sorted(intersection_set)
+    intersection_llist = LinkedList()
+    for value in sorted_intersection_set:
+        intersection_llist.append(value)
+    
+    return intersection_llist
 
 def test():
     # Test case 1
@@ -121,8 +102,9 @@ def test():
         linked_list_1.append(i)
     for i in element_2:
         linked_list_2.append(i)
-    print (union(linked_list_1,linked_list_2)) # Expected output: 1 -> 2 -> 3 -> 4 -> 6 -> 9 -> 11 -> 21 -> 32 -> 35 -> 65 -> 
-    print (intersection(linked_list_1,linked_list_2)) # Expected output: 4 -> 6 -> 21 -> 
+    assert union(linked_list_1,linked_list_2).__str__() == "1 -> 2 -> 3 -> 4 -> 6 -> 9 -> 11 -> 21 -> 32 -> 35 -> 65 -> "
+    assert intersection(linked_list_1,linked_list_2).__str__() == "4 -> 6 -> 21 -> "
+    print("Test case 1 Passed")
 
     # Test case 2
     linked_list_1 = LinkedList()
@@ -133,8 +115,10 @@ def test():
         linked_list_1.append(i)
     for i in element_2:
         linked_list_2.append(i)
-    print (union(linked_list_1,linked_list_2)) # Expected output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 
-    print (intersection(linked_list_1,linked_list_2)) # Expected output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 
+    
+    assert union(linked_list_1,linked_list_2).__str__() == "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> "
+    assert intersection(linked_list_1,linked_list_2).__str__() == "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> "
+    print("Test case 2 Passed")
 
     # Test case 3
     linked_list_1 = LinkedList()
@@ -145,8 +129,38 @@ def test():
         linked_list_1.append(i)
     for i in element_2:
         linked_list_2.append(i)
-    print (union(linked_list_1,linked_list_2)) # Expected output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19 -> 20 ->
-    print (intersection(linked_list_1,linked_list_2)) # Expected output:
+
+    assert union(linked_list_1,linked_list_2).__str__() == "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19 -> 20 -> "
+    assert intersection(linked_list_1,linked_list_2).__str__() == ""
+    print("Test case 3 Passed")
+
+    # Test case 4 (Empty linked list)
+    linked_list_1 = LinkedList()
+    linked_list_2 = LinkedList()
+    element_1 = []
+    element_2 = []
+    for i in element_1:
+        linked_list_1.append(i)
+    for i in element_2:
+        linked_list_2.append(i)
+
+    assert union(linked_list_1,linked_list_2).__str__() == ""
+    assert intersection(linked_list_1,linked_list_2).__str__() == ""
+    print("Test case 4 Passed")
+
+    # Test case 5 (One Empty linked list)
+    linked_list_1 = LinkedList()
+    linked_list_2 = LinkedList()
+    element_1 = [1,2,3,4,5,6,7,8,9,10]
+    element_2 = []
+    for i in element_1:
+        linked_list_1.append(i)
+    for i in element_2:
+        linked_list_2.append(i)
+
+    assert union(linked_list_1,linked_list_2).__str__() == "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> "
+    assert intersection(linked_list_1,linked_list_2).__str__() == ""
+    print("Test case 5 Passed")
 
 if __name__ == "__main__":
     test()
