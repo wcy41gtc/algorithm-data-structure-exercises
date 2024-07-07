@@ -1,0 +1,7 @@
+### Reasoning Behind the Decisions
+
+The primary goal is to maximize the sum of two numbers formed from the digits of the given array. To achieve this, the array needs to be sorted in descending order, ensuring that the largest possible digits are placed at the most significant positions of the numbers. Since we are not allowed to use Python's built-in sorting functions and need a time complexity of \( O(n \log n) \), merge sort is an ideal choice. Merge sort is efficient and reliable for this complexity requirement. After sorting, the digits are alternately assigned to two numbers starting from the largest digit, ensuring the sum of these two numbers is maximized. By distributing the digits alternately, we ensure that the numbers differ in length by at most one digit, meeting the problem's constraints.
+
+### Time and Space Complexity
+
+The time complexity of the algorithm is \( O(n \log n) \) due to the use of merge sort for sorting the array in descending order. Merge sort divides the array into halves recursively and then merges them back together in sorted order, resulting in a logarithmic number of divisions and a linear number of comparisons at each level, hence \( O(n \log n) \). The space complexity is \( O(n) \) because merge sort requires additional space proportional to the size of the array to store the divided subarrays and merged results. This ensures that the algorithm can handle large inputs efficiently while maintaining the required time complexity.

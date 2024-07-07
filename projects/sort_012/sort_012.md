@@ -1,0 +1,7 @@
+### Reasoning Behind the Decisions
+
+The Dutch National Flag problem is solved using a three-pointer approach to ensure a single traversal of the array while sorting the elements. This approach involves three pointers: `low`, `mid`, and `high`, which are used to segregate the 0s, 1s, and 2s. The `low` pointer tracks the position for the next 0, the `mid` pointer traverses the array, and the `high` pointer tracks the position for the next 2. By swapping elements based on their values, the algorithm ensures that all 0s are moved to the beginning of the array, all 2s are moved to the end, and all 1s remain in the middle. This method is chosen because it allows for sorting the array in a single pass without the need for additional sorting functions or multiple traversals, thus optimizing both time and space efficiency.
+
+### Time and Space Complexity
+
+The time complexity of the algorithm is \( O(n) \), where \( n \) is the length of the array. This is because each element in the array is processed exactly once, ensuring that the traversal and sorting are completed in linear time. The space complexity is \( O(1) \) because the algorithm sorts the array in place, using only a fixed amount of extra space for the pointers (`low`, `mid`, and `high`). No additional space proportional to the input size is required, making the algorithm highly efficient in terms of both time and space. This efficiency is crucial for handling large arrays where both the time and space constraints are significant.
