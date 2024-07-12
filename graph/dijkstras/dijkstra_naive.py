@@ -112,7 +112,6 @@ def test():
     
     result = dijkstra(graph, "A")
     print(result)
-    # Output should be as {'A': 0, 'B': 5, 'C': 3, 'D': 2, 'F': 6, 'E': 4}
 
 if __name__ == "__main__":
     test()
