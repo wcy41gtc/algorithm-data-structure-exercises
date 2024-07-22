@@ -47,7 +47,7 @@ def min_operations(target):
 
         # Check the two possible operations
         next_add = current + 1
-        next_double = current  2
+        next_double = current * 2
 
         # If we reach the target with either operation, return the steps
         if next_add == target or next_double == target:
