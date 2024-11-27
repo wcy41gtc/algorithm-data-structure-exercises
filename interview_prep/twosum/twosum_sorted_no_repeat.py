@@ -80,5 +80,76 @@ assert two_sum_optimized2([1, 2, 3, 4, 5], 9) == True
 assert two_sum_optimized2([1, 2, 3, 4, 5], 10) == False
 print("All test cases passed for the optimized approach 2")
 
+# Varient 2: two sum with return the indices of the two numbers that sum up to the target value
 
+# Brute force approach: iterate through all elements pairs in the array and return the indices of the two numbers that sum up to the target value
 
+# Time complexity: O(n^2), worst case
+# Space complexity: O(1), only using a few variables
+
+# Implementation
+
+def two_sum_indices(arr, target):
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] + arr[j] == target:
+                return [i, j]
+    return []
+
+# Test cases
+assert two_sum_indices([1, 2, 3, 4, 5], 9) == [3, 4]
+assert two_sum_indices([1, 2, 3, 4, 5], 10) == []
+print("All test cases passed for the brute force approach for two sum with indices")
+
+# Optimized approach: using a lookup table, a dictionary, to store the elements we have seen so far
+
+# Plan:
+# iterate through the array and for each element, check if the difference between the target and the element is in the dictionary
+# if it is, return the indices of the two numbers
+
+# Time complexity: O(n), worst case
+# Space complexity: O(n), using a dictionary to store the elements we have seen so far, worst case
+
+# Implementing the optimized approach
+def two_sum_indices_optimized(arr, target):
+    seen = {}
+    for i, num in enumerate(arr):
+        if target - num in seen:
+            return [seen[target - num], i]
+        seen[num] = i
+    return []
+
+# Test cases
+assert two_sum_indices_optimized([1, 2, 3, 4, 5], 9) == [3, 4]
+assert two_sum_indices_optimized([1, 2, 3, 4, 5], 10) == []
+print("All test cases passed for the optimized approach 1 for two sum with indices")
+
+# Optimized approach 2: using two pointers, one at the beginning and one at the end of the array
+
+# Plan:
+# initialize two pointers, one at the beginning and one at the end of the array
+# if the sum of the two pointers is equal to the target, return the indices of the two numbers
+# if the sum is less than the target, increment the left pointer
+# if the sum is greater than the target, decrement the right pointer
+
+# Time complexity: O(n), worst case
+# Space complexity: O(1), only using a few variables
+
+# Implementing the optimized approach 2
+
+def two_sum_indices_optimized2(arr, target):
+    left = 0
+    right = len(arr) - 1
+    while left < right:
+        if arr[left] + arr[right] == target:
+            return [left, right]
+        elif arr[left] + arr[right] < target:
+            left += 1
+        else:
+            right -= 1
+    return []
+
+# Test cases
+assert two_sum_indices_optimized2([1, 2, 3, 4, 5], 9) == [3, 4]
+assert two_sum_indices_optimized2([1, 2, 3, 4, 5], 10) == []
+print("All test cases passed for the optimized approach 2 for two sum with indices")
